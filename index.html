@@ -43,14 +43,14 @@
 <body class="bg-zinc-950 text-zinc-200">
     <!-- Navbar -->
     <nav class="border-b border-white/10 bg-zinc-950/90 backdrop-blur-xl sticky top-0 z-50">
-        <div class="max-w-screen-xl mx-auto px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-x-4">
+        <div class="max-w-screen-xl mx-auto px-5 sm:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <div class="flex items-center gap-x-3 sm:gap-x-4">
                     <div class="flex items-center gap-x-3">
-                        <div class="w-10 h-10 bg-red-600 rounded-2xl flex items-center justify-center">
-                            <i class="fa-solid fa-fire text-white text-3xl"></i>
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 bg-red-600 rounded-2xl flex items-center justify-center">
+                            <i class="fa-solid fa-fire text-white text-2xl sm:text-3xl"></i>
                         </div>
-                        <span class="font-display text-3xl font-semibold tracking-[-0.04em]">PhoenixSoulfire</span>
+                        <span class="font-display text-2xl sm:text-3xl font-semibold tracking-[-0.04em]">PhoenixSoulfire</span>
                     </div>
                 </div>
             </div>
@@ -58,23 +58,23 @@
     </nav>
 
     <!-- Hero -->
-    <div class="max-w-screen-xl mx-auto px-8 pt-16 pb-12">
+    <div class="max-w-screen-xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-10 sm:pb-12">
         <div class="max-w-2xl">
-            <div class="inline-flex items-center px-4 h-8 rounded-3xl bg-white/5 border border-white/10 text-xs tracking-[1px] mb-8">
+            <div class="inline-flex items-center px-4 h-8 rounded-3xl bg-white/5 border border-white/10 text-xs tracking-[1px] mb-6 sm:mb-8">
                 <span class="font-medium">HUMAN JUDGMENT • AI ERA</span>
             </div>
             
-            <h1 class="section-header tracking-[-0.05em] leading-none">
+            <h1 class="section-header tracking-[-0.05em] leading-none text-[2.4rem] sm:text-[3rem]">
                 Never outsource<br>your judgment.
             </h1>
             
-            <p class="mt-6 text-xl text-zinc-400 max-w-md">
+            <p class="mt-5 sm:mt-6 text-lg sm:text-xl text-zinc-400 max-w-md">
                 Paste any text. Get a powerful analysis of how machine-like it feels.
             </p>
             
-            <div class="mt-10">
+            <div class="mt-8 sm:mt-10">
                 <button onclick="document.getElementById('analyzer-section').scrollIntoView({behavior:'smooth'})" 
-                        class="px-9 h-14 bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all rounded-3xl font-semibold flex items-center gap-x-3 text-[15px]">
+                        class="px-8 sm:px-9 h-12 sm:h-14 bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all rounded-3xl font-semibold flex items-center gap-x-3 text-[15px]">
                     Analyze text now
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -83,25 +83,25 @@
     </div>
 
     <!-- Analyzer -->
-    <div id="analyzer-section" class="max-w-screen-xl mx-auto px-8 pb-20">
+    <div id="analyzer-section" class="max-w-screen-xl mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
         <div class="max-w-3xl mx-auto">
             <div class="glass border border-white/10 rounded-3xl p-2 shadow-xl">
-                <div class="bg-zinc-900/90 rounded-[22px] p-8">
+                <div class="bg-zinc-900/90 rounded-[22px] p-5 sm:p-8">
                     
-                    <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center justify-between mb-5 sm:mb-6">
                         <div>
-                            <h3 class="text-2xl font-semibold tracking-tight">Judgment Analyzer</h3>
+                            <h3 class="text-xl sm:text-2xl font-semibold tracking-tight">Judgment Analyzer</h3>
                             <p class="text-sm text-zinc-400 mt-1">42 detection rules • No API key needed</p>
                         </div>
                     </div>
 
-                    <textarea id="input-text" rows="9" 
-                              class="w-full bg-zinc-950 border border-white/10 focus:border-red-600/60 transition-colors rounded-3xl px-7 py-7 text-[15px] placeholder:text-zinc-500 resize-y"
+                    <textarea id="input-text" rows="8" 
+                              class="w-full bg-zinc-950 border border-white/10 focus:border-red-600/60 transition-colors rounded-3xl px-5 sm:px-7 py-5 sm:py-7 text-[15px] placeholder:text-zinc-500 resize-y"
                               placeholder="Paste the text you want to analyze here..."></textarea>
                     
                     <div class="flex justify-end mt-4">
                         <button onclick="analyzeTextRuleBased()" 
-                                class="px-8 h-12 bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all rounded-3xl font-semibold flex items-center gap-x-3 text-sm">
+                                class="px-7 sm:px-8 h-11 sm:h-12 bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all rounded-3xl font-semibold flex items-center gap-x-3 text-sm">
                             <span>Analyze Text</span>
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -110,32 +110,32 @@
             </div>
 
             <!-- Results -->
-            <div id="results-section" class="hidden mt-8">
-                <div class="glass border border-white/10 rounded-3xl p-8">
+            <div id="results-section" class="hidden mt-6 sm:mt-8">
+                <div class="glass border border-white/10 rounded-3xl p-5 sm:p-8">
                     
-                    <div class="flex items-center justify-between mb-10">
-                        <h4 class="text-xl font-semibold">Analysis Results</h4>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8 sm:mb-10">
+                        <h4 class="text-lg sm:text-xl font-semibold">Analysis Results</h4>
                         <div id="verdict-badge"></div>
                     </div>
 
-                    <!-- Metrics - larger & clearer -->
-                    <div class="grid grid-cols-3 gap-5 mb-10">
-                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-7">
-                            <div class="text-[11px] font-medium tracking-[1.8px] uppercase text-zinc-400">AI Likelihood</div>
-                            <div id="ai-score" class="metric text-7xl font-semibold mt-4 tracking-[-0.05em]"></div>
+                    <!-- Metrics - responsive -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 mb-8 sm:mb-10">
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5 sm:p-7">
+                            <div class="text-[10px] sm:text-[11px] font-medium tracking-[1.6px] uppercase text-zinc-400">AI Likelihood</div>
+                            <div id="ai-score" class="metric text-5xl sm:text-7xl font-semibold mt-2 sm:mt-4 tracking-[-0.05em]"></div>
                         </div>
-                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-7">
-                            <div class="text-[11px] font-medium tracking-[1.8px] uppercase text-zinc-400">Human Likelihood</div>
-                            <div id="human-score" class="metric text-7xl font-semibold mt-4 tracking-[-0.05em]"></div>
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5 sm:p-7">
+                            <div class="text-[10px] sm:text-[11px] font-medium tracking-[1.6px] uppercase text-zinc-400">Human Likelihood</div>
+                            <div id="human-score" class="metric text-5xl sm:text-7xl font-semibold mt-2 sm:mt-4 tracking-[-0.05em]"></div>
                         </div>
-                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-7">
-                            <div class="text-[11px] font-medium tracking-[1.8px] uppercase text-zinc-400">Confidence</div>
-                            <div id="confidence-score" class="metric text-7xl font-semibold mt-4 tracking-[-0.05em]"></div>
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5 sm:p-7">
+                            <div class="text-[10px] sm:text-[11px] font-medium tracking-[1.6px] uppercase text-zinc-400">Confidence</div>
+                            <div id="confidence-score" class="metric text-5xl sm:text-7xl font-semibold mt-2 sm:mt-4 tracking-[-0.05em]"></div>
                         </div>
                     </div>
 
                     <div>
-                        <div class="text-xs uppercase tracking-[1.8px] text-zinc-400 mb-4 px-1">Key Signals Detected</div>
+                        <div class="text-xs uppercase tracking-[1.6px] text-zinc-400 mb-3 sm:mb-4 px-1">Key Signals Detected</div>
                         <div id="signals-list" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
@@ -248,19 +248,19 @@
 
             const badge = document.getElementById('verdict-badge');
             if (aiLikelihood > 78) {
-                badge.className = `px-5 h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-red-600/10 text-red-500`;
+                badge.className = `px-4 sm:px-5 h-8 sm:h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-red-600/10 text-red-500`;
                 badge.innerHTML = `<span>Strongly AI-generated</span>`;
             } else if (aiLikelihood > 58) {
-                badge.className = `px-5 h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-amber-600/10 text-amber-500`;
+                badge.className = `px-4 sm:px-5 h-8 sm:h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-amber-600/10 text-amber-500`;
                 badge.innerHTML = `<span>Likely AI-generated</span>`;
             } else {
-                badge.className = `px-5 h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-emerald-600/10 text-emerald-500`;
+                badge.className = `px-4 sm:px-5 h-8 sm:h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-emerald-600/10 text-emerald-500`;
                 badge.innerHTML = `<span>Possibly human-written</span>`;
             }
 
             const signalsContainer = document.getElementById('signals-list');
             signalsContainer.innerHTML = signals.map(s => 
-                `<div class="px-4 py-1.5 bg-white/5 text-xs rounded-3xl">${s}</div>`
+                `<div class="px-3 sm:px-4 py-1.5 bg-white/5 text-xs rounded-3xl">${s}</div>`
             ).join('');
         }
     </script>
