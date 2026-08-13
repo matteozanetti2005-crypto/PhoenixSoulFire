@@ -32,6 +32,7 @@
 
         .metric {
             font-variant-numeric: tabular-nums;
+            letter-spacing: -0.04em;
         }
 
         .judgment-card {
@@ -112,34 +113,30 @@
             <div id="results-section" class="hidden mt-8">
                 <div class="glass border border-white/10 rounded-3xl p-8">
                     
-                    <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center justify-between mb-10">
                         <h4 class="text-xl font-semibold">Analysis Results</h4>
                         <div id="verdict-badge"></div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 mb-8">
-                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5">
-                            <div class="text-[10px] tracking-[1.5px] text-zinc-400">AI LIKELIHOOD</div>
-                            <div id="ai-score" class="metric text-6xl font-semibold mt-3"></div>
+                    <!-- Metrics - larger & clearer -->
+                    <div class="grid grid-cols-3 gap-5 mb-10">
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-7">
+                            <div class="text-[11px] font-medium tracking-[1.8px] uppercase text-zinc-400">AI Likelihood</div>
+                            <div id="ai-score" class="metric text-7xl font-semibold mt-4 tracking-[-0.05em]"></div>
                         </div>
-                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5">
-                            <div class="text-[10px] tracking-[1.5px] text-zinc-400">HUMAN LIKELIHOOD</div>
-                            <div id="human-score" class="metric text-6xl font-semibold mt-3"></div>
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-7">
+                            <div class="text-[11px] font-medium tracking-[1.8px] uppercase text-zinc-400">Human Likelihood</div>
+                            <div id="human-score" class="metric text-7xl font-semibold mt-4 tracking-[-0.05em]"></div>
                         </div>
-                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5">
-                            <div class="text-[10px] tracking-[1.5px] text-zinc-400">CONFIDENCE</div>
-                            <div id="confidence-score" class="metric text-6xl font-semibold mt-3"></div>
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-7">
+                            <div class="text-[11px] font-medium tracking-[1.8px] uppercase text-zinc-400">Confidence</div>
+                            <div id="confidence-score" class="metric text-7xl font-semibold mt-4 tracking-[-0.05em]"></div>
                         </div>
-                    </div>
-
-                    <div class="mb-8">
-                        <div class="text-xs uppercase tracking-[1.5px] text-zinc-400 mb-3 px-1">KEY SIGNALS DETECTED</div>
-                        <div id="signals-list" class="flex flex-wrap gap-2"></div>
                     </div>
 
                     <div>
-                        <div class="text-xs uppercase tracking-[1.5px] text-zinc-400 mb-3 px-1">JUDGMENT QUESTIONS</div>
-                        <div id="questions-list" class="space-y-3"></div>
+                        <div class="text-xs uppercase tracking-[1.8px] text-zinc-400 mb-4 px-1">Key Signals Detected</div>
+                        <div id="signals-list" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
             </div>
@@ -265,14 +262,6 @@
             signalsContainer.innerHTML = signals.map(s => 
                 `<div class="px-4 py-1.5 bg-white/5 text-xs rounded-3xl">${s}</div>`
             ).join('');
-
-            const questionsContainer = document.getElementById('questions-list');
-            questionsContainer.innerHTML = `
-                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">What decision were you already leaning toward before reading this?</div>
-                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">What in this output feels slightly off, even if it looks correct?</div>
-                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">Would you be comfortable signing this with your name?</div>
-                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">If this was wrong, where would the mistake most likely be?</div>
-            `;
         }
     </script>
 </body>
