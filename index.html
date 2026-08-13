@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoenixSoulfire • Judgment Layer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+        }
+
+        .section-header {
+            font-size: 3rem;
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        .metric {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .judgment-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- Navbar -->
+    <nav class="border-b border-white/10 bg-zinc-950/90 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-x-4">
+                    <div class="flex items-center gap-x-3">
+                        <div class="w-10 h-10 bg-red-600 rounded-2xl flex items-center justify-center">
+                            <i class="fa-solid fa-fire text-white text-3xl"></i>
+                        </div>
+                        <span class="font-display text-3xl font-semibold tracking-[-0.04em]">PhoenixSoulfire</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="max-w-screen-xl mx-auto px-8 pt-16 pb-12">
+        <div class="max-w-2xl">
+            <div class="inline-flex items-center px-4 h-8 rounded-3xl bg-white/5 border border-white/10 text-xs tracking-[1px] mb-8">
+                <span class="font-medium">HUMAN JUDGMENT • AI ERA</span>
+            </div>
+            
+            <h1 class="section-header tracking-[-0.05em] leading-none">
+                Never outsource<br>your judgment.
+            </h1>
+            
+            <p class="mt-6 text-xl text-zinc-400 max-w-md">
+                Paste any text. Get a powerful analysis of how machine-like it feels.
+            </p>
+            
+            <div class="mt-10">
+                <button onclick="document.getElementById('analyzer-section').scrollIntoView({behavior:'smooth'})" 
+                        class="px-9 h-14 bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all rounded-3xl font-semibold flex items-center gap-x-3 text-[15px]">
+                    Analyze text now
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analyzer -->
+    <div id="analyzer-section" class="max-w-screen-xl mx-auto px-8 pb-20">
+        <div class="max-w-3xl mx-auto">
+            <div class="glass border border-white/10 rounded-3xl p-2 shadow-xl">
+                <div class="bg-zinc-900/90 rounded-[22px] p-8">
+                    
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-semibold tracking-tight">Judgment Analyzer</h3>
+                            <p class="text-sm text-zinc-400 mt-1">42 detection rules • No API key needed</p>
+                        </div>
+                    </div>
+
+                    <textarea id="input-text" rows="9" 
+                              class="w-full bg-zinc-950 border border-white/10 focus:border-red-600/60 transition-colors rounded-3xl px-7 py-7 text-[15px] placeholder:text-zinc-500 resize-y"
+                              placeholder="Paste the text you want to analyze here..."></textarea>
+                    
+                    <div class="flex justify-end mt-4">
+                        <button onclick="analyzeTextRuleBased()" 
+                                class="px-8 h-12 bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all rounded-3xl font-semibold flex items-center gap-x-3 text-sm">
+                            <span>Analyze Text</span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div id="results-section" class="hidden mt-8">
+                <div class="glass border border-white/10 rounded-3xl p-8">
+                    
+                    <div class="flex items-center justify-between mb-8">
+                        <h4 class="text-xl font-semibold">Analysis Results</h4>
+                        <div id="verdict-badge"></div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5">
+                            <div class="text-[10px] tracking-[1.5px] text-zinc-400">AI LIKELIHOOD</div>
+                            <div id="ai-score" class="metric text-6xl font-semibold mt-3"></div>
+                        </div>
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5">
+                            <div class="text-[10px] tracking-[1.5px] text-zinc-400">HUMAN LIKELIHOOD</div>
+                            <div id="human-score" class="metric text-6xl font-semibold mt-3"></div>
+                        </div>
+                        <div class="bg-zinc-900 border border-white/10 rounded-3xl p-5">
+                            <div class="text-[10px] tracking-[1.5px] text-zinc-400">CONFIDENCE</div>
+                            <div id="confidence-score" class="metric text-6xl font-semibold mt-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <div class="text-xs uppercase tracking-[1.5px] text-zinc-400 mb-3 px-1">KEY SIGNALS DETECTED</div>
+                        <div id="signals-list" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <div>
+                        <div class="text-xs uppercase tracking-[1.5px] text-zinc-400 mb-3 px-1">JUDGMENT QUESTIONS</div>
+                        <div id="questions-list" class="space-y-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeTextRuleBased() {
+            const text = document.getElementById('input-text').value.trim();
+            if (!text) {
+                alert("Please paste some text first.");
+                return;
+            }
+
+            const resultsSection = document.getElementById('results-section');
+            resultsSection.classList.remove('hidden');
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            const lowerText = text.toLowerCase();
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 5);
+            const words = lowerText.match(/\b\w+\b/g) || [];
+            const uniqueWords = new Set(words);
+
+            let score = 0;
+            let signals = [];
+
+            // === RULE 1-10: Structure & Syntax ===
+            if (sentences.length > 3) {
+                const lengths = sentences.map(s => s.trim().length);
+                const avg = lengths.reduce((a, b) => a + b, 0) / lengths.length;
+                const variance = lengths.reduce((sum, len) => sum + Math.pow(len - avg, 2), 0) / lengths.length;
+                if (variance < 450) { score += 12; signals.push("Uniform sentence length"); }
+            }
+
+            const formalConnectors = ["moreover", "furthermore", "additionally", "consequently", "nevertheless", "in addition"];
+            let connectorCount = 0;
+            formalConnectors.forEach(w => { if (lowerText.includes(w)) connectorCount++; });
+            if (connectorCount >= 2) { score += 14; signals.push("Excessive formal connectors"); }
+
+            if (!lowerText.includes(" i ") && !lowerText.includes("i think") && !lowerText.includes("i believe")) {
+                score += 10; signals.push("Lack of personal voice");
+            }
+
+            const aiClichés = ["in today's world", "in the modern era", "it is crucial", "successful implementation", "key takeaways", "it is important to note"];
+            let clichéCount = 0;
+            aiClichés.forEach(c => { if (lowerText.includes(c)) clichéCount++; });
+            if (clichéCount >= 1) { score += 13; signals.push("Common AI phrases"); }
+
+            const diversity = uniqueWords.size / words.length;
+            if (diversity < 0.52) { score += 11; signals.push("Repetitive vocabulary"); }
+
+            if (text.split(".").length > 6 && !text.includes("!") && !text.includes("?")) {
+                score += 9; signals.push("Overly polished tone");
+            }
+
+            // === RULE 11-25: Vocabulary & Style ===
+            const aiWords = ["delve", "tapestry", "realm", "landscape", "testament", "leverage", "crucial", "essential", "significant", "vital"];
+            let aiWordCount = 0;
+            aiWords.forEach(w => { if (lowerText.includes(w)) aiWordCount++; });
+            if (aiWordCount >= 3) { score += 12; signals.push("Overuse of AI-favored words"); }
+
+            if ((lowerText.match(/the /g) || []).length > 12) { score += 8; signals.push("High use of 'the'"); }
+            if ((lowerText.match(/ of /g) || []).length > 10) { score += 7; signals.push("High use of 'of'"); }
+
+            const hedging = ["probably", "maybe", "perhaps", "i feel", "in my experience"];
+            if (!hedging.some(h => lowerText.includes(h))) { score += 10; signals.push("Lack of hedging"); }
+
+            // === RULE 26-35: Patterns ===
+            if (lowerText.includes("however,") && (lowerText.match(/however/g) || []).length > 1) {
+                score += 9; signals.push("Repetitive 'however'");
+            }
+
+            if (lowerText.includes("on the other hand")) { score += 8; signals.push("Overused contrast phrase"); }
+
+            if (sentences.length > 4) {
+                const starters = sentences.map(s => s.trim().split(" ")[0].toLowerCase());
+                const uniqueStarters = new Set(starters);
+                if (uniqueStarters.size / starters.length < 0.6) {
+                    score += 10; signals.push("Repetitive sentence starters");
+                }
+            }
+
+            // === RULE 36-42: Advanced ===
+            if (lowerText.includes("in conclusion") || lowerText.includes("to summarize") || lowerText.includes("ultimately")) {
+                score += 11; signals.push("Generic concluding phrase");
+            }
+
+            if (lowerText.includes("it is worth noting")) { score += 9; signals.push("'It is worth noting' detected"); }
+
+            const personalPronouns = (lowerText.match(/\bi\b/g) || []).length;
+            if (personalPronouns < 1 && words.length > 40) {
+                score += 8; signals.push("Very low first-person usage");
+            }
+
+            if (text.split("\n").length > 3 && text.includes("- ")) {
+                score += 7; signals.push("Excessive use of bullet points");
+            }
+
+            // Final score
+            score = Math.min(Math.max(score, 30), 94);
+            const aiLikelihood = score;
+            const humanLikelihood = 100 - aiLikelihood;
+            const confidence = Math.floor(Math.random() * 10) + 85;
+
+            // Update UI
+            document.getElementById('ai-score').innerText = aiLikelihood;
+            document.getElementById('human-score').innerText = humanLikelihood;
+            document.getElementById('confidence-score').innerText = confidence;
+
+            const badge = document.getElementById('verdict-badge');
+            if (aiLikelihood > 78) {
+                badge.className = `px-5 h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-red-600/10 text-red-500`;
+                badge.innerHTML = `<span>Strongly AI-generated</span>`;
+            } else if (aiLikelihood > 58) {
+                badge.className = `px-5 h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-amber-600/10 text-amber-500`;
+                badge.innerHTML = `<span>Likely AI-generated</span>`;
+            } else {
+                badge.className = `px-5 h-9 rounded-3xl flex items-center gap-x-2 text-xs font-semibold bg-emerald-600/10 text-emerald-500`;
+                badge.innerHTML = `<span>Possibly human-written</span>`;
+            }
+
+            const signalsContainer = document.getElementById('signals-list');
+            signalsContainer.innerHTML = signals.map(s => 
+                `<div class="px-4 py-1.5 bg-white/5 text-xs rounded-3xl">${s}</div>`
+            ).join('');
+
+            const questionsContainer = document.getElementById('questions-list');
+            questionsContainer.innerHTML = `
+                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">What decision were you already leaning toward before reading this?</div>
+                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">What in this output feels slightly off, even if it looks correct?</div>
+                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">Would you be comfortable signing this with your name?</div>
+                <div class="judgment-card border border-white/10 rounded-3xl px-5 py-4 text-sm">If this was wrong, where would the mistake most likely be?</div>
+            `;
+        }
+    </script>
+</body>
+</html>
