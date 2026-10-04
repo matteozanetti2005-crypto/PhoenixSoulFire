@@ -110,6 +110,25 @@
                 </div>
             </div>
 
+
+            <div class="mt-6 sm:mt-8">
+                <p class="text-xs tracking-[1px] text-zinc-400 mb-3">THREE TEXTS. SAME FILTER.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <button type="button" onclick="loadExample('farmed')" class="text-left glass border border-white/10 rounded-2xl p-4 hover:border-red-500/40">
+                        <span class="block text-xs text-red-400 mb-2">FARMED</span>
+                        <span class="block text-sm text-zinc-300">Excited to announce my journey into the AI art space. In today's fast-paced world, creativity knows no bounds. Let's unlock your potential together. Drop a fire if you agree.</span>
+                    </button>
+                    <button type="button" onclick="loadExample('mine')" class="text-left glass border border-white/10 rounded-2xl p-4 hover:border-emerald-500/40">
+                        <span class="block text-xs text-emerald-400 mb-2">MINE</span>
+                        <span class="block text-sm text-zinc-300">I wrote four words. No generate. No imagine. Three images came back unasked. The signal was enough. I still decide which one stands.</span>
+                    </button>
+                    <button type="button" onclick="loadExample('model')" class="text-left glass border border-white/10 rounded-2xl p-4 hover:border-white/30">
+                        <span class="block text-xs text-zinc-400 mb-2">MODEL</span>
+                        <span class="block text-sm text-zinc-300">Art in the age of AI is a profound dance between human intuition and machine capability, inviting us to reimagine creativity while staying true to our authentic selves.</span>
+                    </button>
+                </div>
+            </div>
+
             <!-- Results -->
             <div id="results-section" class="hidden mt-6 sm:mt-8">
                 <div class="glass border border-white/10 rounded-3xl p-5 sm:p-8">
@@ -145,6 +164,21 @@
     </div>
 
     <script>
+
+        const EXAMPLES = {
+            farmed: "Excited to announce my journey into the AI art space. In today's fast-paced world, creativity knows no bounds. Let's unlock your potential together. Drop a fire if you agree.",
+            mine: "I wrote four words. No generate. No imagine. Three images came back unasked. The signal was enough. I still decide which one stands.",
+            model: "Art in the age of AI is a profound dance between human intuition and machine capability, inviting us to reimagine creativity while staying true to our authentic selves."
+        };
+
+        function loadExample(key) {
+            const text = EXAMPLES[key];
+            if (!text) return;
+            document.getElementById('input-text').value = text;
+            analyzeTextRuleBased();
+            document.getElementById('results-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         function analyzeTextRuleBased() {
             const text = document.getElementById('input-text').value.trim();
             if (!text) {
